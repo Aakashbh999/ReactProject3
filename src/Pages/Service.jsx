@@ -2,21 +2,15 @@ import React, { useEffect } from "react";
 import { getPublicData } from "../utils/Query";
 import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "../utils/CONSTANTS";
+import Loader from "./Loader";
 
 const Service = () => {
-  const { data, error, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: [queryKeys.SERVICE],
     queryFn: () => getPublicData(queryKeys.SERVICE),
   });
 
-  console.log(data);
-
-  if (isLoading)
-    return (
-      <>
-        <h1>Loading..</h1>
-      </>
-    );
+  if (isLoading) return <Loader />;
   return (
     <>
       <div className="w-full h-full flex flex-wrap gap-6 ">

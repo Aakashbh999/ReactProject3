@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { getPublicRequest, getPrivateRequest } from "./axios";
 
 export const getPublicData = async (url, params = {}) => {
@@ -9,12 +10,14 @@ export const getPublicData = async (url, params = {}) => {
     throw error;
   }
 };
-export const postPublicData = async (url, params = {}) => {
+export const postPublicData = async (url, values) => {
   try {
-    const response = await getPublicRequest.post(url, { params });
+    const response = await getPublicRequest.post(url, values);
+    toast.success(response.data.msg);
     return response.data;
   } catch (error) {
     console.log("Error has been occur!");
+    toast.error(error.response.data.msg);
     throw error;
   }
 };
@@ -45,12 +48,15 @@ export const postPrivatesData = async (url, params = {}) => {
     throw error;
   }
 };
-export const putPrivatesData = async (url, params = {}) => {
+export const putPrivatesData = async (url, value) => {
   try {
-    const response = await getPrivateRequest.put(url, { params });
+    const response = await getPrivateRequest.put(url, value);
+    toast.success(response.data.message);
     return response.data;
   } catch (error) {
     console.log("Error has been occur!");
+    toast.error(error.response.data.extraDetails);
+
     throw error;
   }
 };

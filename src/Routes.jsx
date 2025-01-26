@@ -6,6 +6,7 @@ import Blog from "./Pages/Blog";
 import NotFound from "./Component/NotFound";
 import Service from "./Pages/Service";
 import Contact from "./Pages/Contact";
+import Edit from "./Component/Admin/Edit";
 export const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -32,6 +33,12 @@ export const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+        children: [
+          {
+            path: "edit",
+            element: <Edit />,
+          },
+        ],
       },
     ],
   },
